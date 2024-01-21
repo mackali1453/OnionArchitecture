@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Github.NetCoreWebApp.props" />
+</Project>
