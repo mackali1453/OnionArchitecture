@@ -29,17 +29,41 @@ Bağımlılık sırasına göre katmanlar ve bahsedilmesi gerek önemli konular 
 
 ## Presentation
   - Web Api : Burada bahsedilmesi gereken en önemli konu IoC ve DI ile nesnelerin yaşam döngüsünü kontrol ettiğimiz program.cs dosyası.
-  ```
-    builder.Services.AddCommonDependencies();
-  ```
-  Bu kod satırında extension metod aracılığı ile ilgili katmana gidip bağımlılıklarımızı konteyner içine inject ediyoruz.
-  
-  ```
-    public static void AddCommonDependencies(this IServiceCollection builder)
-    {
-        builder.AddScoped(typeof(IServiceLogger<>), typeof(ServiceLogger<>));           
-    }
-  ```
+    ```
+      builder.Services.AddCommonDependencies();
+    ```
+    Bu kod satırında extension metod aracılığı ile ilgili katmana gidip bağımlılıklarımızı konteyner içine inject ediyoruz.
+    
+    ```
+      public static void AddCommonDependencies(this IServiceCollection builder)
+      {
+          builder.AddScoped(typeof(IServiceLogger<>), typeof(ServiceLogger<>));           
+      }
+    ```
+
+    - Mediatr patter : Nesnelerin arasındaki bağımlılıkları bir aracı kullanarak gevşek bağlı ilişkiler oluşturmamıza yarar. Böylece gelen requestleri api katmanında herhangi bir instance
+      oluşturmadan(bağımlılık) application katmanında handle edebiliriz.
+
+      
+            ```
+            [HttpPost]
+            [ServiceFilter(typeof(ValidateModelAttribute))]
+            [HttpPost]
+            public async Task<IActionResult> Create(CreateCategoryCommandRequest createCategoryCommandRequest)
+            {
+                var result = await this._mediator.Send(createCategoryCommandRequest);
+    
+                return Ok(result);
+            }
+            ```
+            ```
+            namespace Application.Aggregates.Category.Handlers
+            {
+                public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommandRequest>
+                {
+                ...
+            ```
+          
   - Middleware : Mevcuttaki projede middleware üzerinden 2 tane konuyu ele alacağız. Biri exception handling diğeri ise validation. Middleware'ın bize sunduğu diğer avantaj ise DRY ile ele alınabilir.
     Sadece apiler'imize eklediğimiz attribute'ler aracılığı ile her yerde tekrarlanan kod satırlarından kurtulabiliriz.
     
@@ -135,3 +159,79 @@ Bağımlılık sırasına göre katmanlar ve bahsedilmesi gerek önemli konular 
       olarak ele almamızı sağlar. Klasör hiyerarşisine baktığımızda bunu daha iyi anlıyor olacağız.
 
 ![aggregate](https://github.com/mackali1453/OnionArchitecture/assets/87720632/91f47e2f-6161-4aa5-9397-76888198aa01)
+
+- Core : Burada business entitylerimizi oluşturacağız. Bu katman başka hiçbir katmana bağımlı değildir.
+
+## Common
+  - Cross-cutting concern farklı katmanlarda yer alan ve ortak kullanılan yapıları bu katmanda ele alıyoruz. Bu katmandaki Logger yapısını ele alalım.
+    
+      ```
+      
+        public class ServiceLogger<T> : IServiceLogger<T> where T : class
+            {
+                private readonly string _categoryName;
+                private readonly LogLevel _minimumLogLevel;
+                private readonly IUow _iuow;
+                public ServiceLogger(IOptions<Logging> appsettings, IUow uow)
+                {
+                    _categoryName = typeof(T).Name;
+                    _minimumLogLevel = Enum.Parse<LogLevel>(appsettings.Value.LogLevel.LogLevel);
+                    _iuow = uow;
+                }
+        
+                public void Info(object message)
+                {
+                    if (_minimumLogLevel >= LogLevel.Information)
+                        Save(message);
+                }
+                public void Error(object message)
+                {
+                    if (_minimumLogLevel >= LogLevel.Error)
+                        Save(message);
+                }
+        
+                public void Save(object message)
+                {
+                    var logEntry = new LogEntry
+                    {
+                        ServiceName = _categoryName,
+                        Timestamp = DateTime.UtcNow,
+                        Message = JsonConvert.SerializeObject(message)
+                    };
+        
+                    var logRepo = _iuow.GetLogRepository<LogEntry>();
+                    logRepo.CreateAsync(logEntry);
+                }
+            }
+  
+    
+            builder.Services.Configure<Logging>(builder.Configuration.GetSection("Logging"));
+            builder.Services.AddCommonDependencies();
+        
+            public static void AddCommonDependencies(this IServiceCollection builder)
+            {
+                builder.AddScoped(typeof(IServiceLogger<>), typeof(ServiceLogger<>));           
+            }
+
+  
+          ```
+
+
+  Görüldüğü üzere herhangi bir kütüphane kullanmadan custom bir logger yapısı oluşturabiliyoruz. Tek yapmamız gereken appsettings ve ServiceLogger'ı DI ile konteyner'a inject etmek.
+  Ardından halihazırda konteynerda yer alan ServiceLogger'ı kullanmak istediğimiz sınıfta constructer'a ekleyerek loglama işlemlerimizi gerçekleştirebiliriz. Projedeki örnekte logger'ı
+  exception handling middleware'da kullanıyoruz.
+
+
+            ```
+      
+            [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+            public class LoggingAttribute : Attribute, IActionFilter
+            {
+                private readonly IServiceLogger<LoggingAttribute> _logger;
+        
+                public LoggingAttribute(IServiceLogger<LoggingAttribute> logger)
+                {
+                    _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+                }
+        
+            ```
