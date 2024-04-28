@@ -32,3 +32,4 @@ C:\Users\melik\source\repos\OnionArchitecture\.NetCoreWebApp\Common\obj\Debug\ne
 C:\Users\melik\source\repos\OnionArchitecture\.NetCoreWebApp\Common\obj\Debug\net6.0\refint\Common.dll
 C:\Users\melik\source\repos\OnionArchitecture\.NetCoreWebApp\Common\obj\Debug\net6.0\Common.pdb
 C:\Users\melik\source\repos\OnionArchitecture\.NetCoreWebApp\Common\obj\Debug\net6.0\ref\Common.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Common\obj\Debug\net6.0\Common.sourcelink.json

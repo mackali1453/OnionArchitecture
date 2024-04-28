@@ -4,11 +4,12 @@ namespace Github.NetCoreWebApp.Core.Applications.Interfaces
 {
     public interface IRepository<T> where T : class, new()
     {
-        Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(object id);
-        Task<T> GetByFilter(Expression<Func<T, bool>> filter);
+        Task<List<T>> GetByFilter(Expression<Func<T, bool>> filter);
         Task CreateAsync(T entity);
         Task UpdateAsync(T updatedEntity, T oldEntity);
-        Task RemoveAsyn(T entity);
+        void Remove(T entity);
+        Task RemoveEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);
+        Task<T> GetByFilterEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);
     }
 }

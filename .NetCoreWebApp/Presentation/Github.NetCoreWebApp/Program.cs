@@ -1,13 +1,15 @@
+using Domain.Entities;
 using Github.NetCoreWebApp.Core.Application;
-using Github.NetCoreWebApp.Core.Domain.Entities;
 using Github.NetCoreWebApp.Infrastructure.Common;
 using Github.NetCoreWebApp.Infrastructure.Persistance;
+using Github.NetCoreWebApp.Presentation;
+using Github.NetCoreWebApp.Presentation.Middlewares;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
-using Github.NetCoreWebApp.Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,13 +33,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-builder.Services.AddApplicationDependencies();
 builder.Services.AddOptions();
 builder.Services.Configure<Logging>(builder.Configuration.GetSection("Logging"));
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddPersistanceDependencies(builder.Configuration.GetConnectionString("Local"));
+builder.Services.AddApplicationDependencies();
 builder.Services.AddCommonDependencies();
 builder.Services.AddMiddlewareDependencies();
-builder.Services.AddPersistanceDependencies(builder.Configuration.GetConnectionString("Local"));
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,6 +53,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
+app.MapControllers();
 app.Run();

@@ -6,104 +6,114 @@ namespace Github.NetCoreWebApp.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class, new()
     {
-        private DbContext _webApiContext;
+        private readonly DbContext _dbContext;
 
-        public Repository(DbContext webApiContext)
+        public Repository(DbContext dbContext)
         {
-            _webApiContext = webApiContext;
+            _dbContext = dbContext;
         }
+
         public async Task CreateAsync(T entity)
         {
             try
             {
-                await _webApiContext.Set<T>().AddAsync(entity);
+                await _dbContext.Set<T>().AddAsync(entity);
             }
             catch (Exception ex)
             {
-                throw new System.Exception(ex.Message);
+                throw new Exception("Error occurred while creating entity.", ex);
             }
         }
 
-        public async Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetByFilter(Expression<Func<T, bool>> filter)
         {
-            List<T> result;
-
             try
             {
-                result = await _webApiContext.Set<T>().AsNoTracking().ToListAsync();
+                return await _dbContext.Set<T>().AsNoTracking().Where(filter).ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new System.Exception(ex.Message);
+                throw new Exception("Error occurred while fetching entities by filter.", ex);
             }
-
-            return result;
         }
 
-        public async Task<T> GetByFilter(Expression<Func<T, bool>> filter)
+        public async Task<T?> GetByFilterEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties)
         {
-            T result;
-
             try
             {
-                result = await _webApiContext.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter);
-            }
-            catch (Exception ex)
-            {
-                throw new System.Exception(ex.Message);
-            }
+                IQueryable<T> query = _dbContext.Set<T>();
 
-            return result;
-        }
-
-        public async Task<T> GetByIdAsync(object id)
-        {
-            T result;
-
-            try
-            {
-                result = await _webApiContext.Set<T>().FindAsync(id);
-            }
-            catch (Exception ex)
-            {
-                throw new System.Exception(ex.Message);
-            }
-
-            return result;
-        }
-
-        public Task RemoveAsyn(T entity)
-        {
-            Task result;
-
-            try
-            {
-                result = Task.FromResult(() => { _webApiContext.Set<T>().Remove(entity); });
-            }
-            catch (Exception ex)
-            {
-                throw new System.Exception(ex.Message);
-            }
-
-            return result;
-        }
-        public Task UpdateAsync(T updatedEntity, T oldEntity)
-        {
-            Task<Action> action;
-
-            try
-            {
-                action = Task.FromResult(() =>
+                foreach (var includeProperty in includeProperties)
                 {
-                    _webApiContext.Entry(oldEntity).CurrentValues.SetValues(updatedEntity);
-                });
+                    query = query.Include(includeProperty);
+                }
+
+                return await query.SingleOrDefaultAsync(filter);
             }
             catch (Exception ex)
             {
-                throw new System.Exception(ex.Message);
+                throw new Exception("Error occurred while fetching entity by filter with eager loading.", ex);
             }
+        }
 
-            return action;
+        public async Task<T?> GetByIdAsync(object id)
+        {
+            try
+            {
+                return await _dbContext.Set<T>().FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while fetching entity by ID.", ex);
+            }
+        }
+
+        public void Remove(T entity)
+        {
+            try
+            {
+                _dbContext.Set<T>().Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while removing entity.", ex);
+            }
+        }
+
+        public async Task RemoveEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties)
+        {
+            try
+            {
+                IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+
+                foreach (var includeProperty in includeProperties)
+                {
+                    query = query.Include(includeProperty);
+                }
+
+                var entityToDelete = await query.SingleOrDefaultAsync(filter);
+
+                if (entityToDelete != null)
+                {
+                    _dbContext.Set<T>().Remove(entityToDelete);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while removing entity with eager loading.", ex);
+            }
+        }
+
+        public async Task UpdateAsync(T updatedEntity, T oldEntity)
+        {
+            try
+            {
+                _dbContext.Entry(oldEntity).CurrentValues.SetValues(updatedEntity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while updating entity.", ex);
+            }
         }
     }
 }

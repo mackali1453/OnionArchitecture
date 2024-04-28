@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h6La6agwZVtBU95Hg8/NWMxwgG8e+KHK+2B6z7l9R0KgX5iFCizosruQo+W0zqhZK4G6Z9pVUrzk4nVCmO5vSQ==",
+  "dgSpecHash": "ujlKtwhZzfWD1FtZYLsz+PhVa1RVlacA/3Ae1Gm3nd5pNDLKmjkQKdGd0EmWQdKCls126qkiev0A6LB9Y0gQBA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

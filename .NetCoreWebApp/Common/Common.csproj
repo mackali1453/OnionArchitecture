@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Application\Application.csproj" />
+    <ProjectReference Include="..\Presentation\Middleware\Middleware.csproj" />
   </ItemGroup>
 
 </Project>

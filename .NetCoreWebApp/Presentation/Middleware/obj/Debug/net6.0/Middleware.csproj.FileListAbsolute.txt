@@ -32,3 +32,8 @@ C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middle
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middleware\obj\Debug\net6.0\refint\Middleware.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middleware\obj\Debug\net6.0\Middleware.pdb
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middleware\obj\Debug\net6.0\ref\Middleware.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middleware\obj\Debug\net6.0\Middleware.sourcelink.json
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middleware\bin\Debug\net6.0\Persistance.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middleware\bin\Debug\net6.0\Persistance.pdb
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middleware\bin\Debug\net6.0\Common.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Middleware\bin\Debug\net6.0\Common.pdb

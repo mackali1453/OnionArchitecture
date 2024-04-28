@@ -1,4 +1,4 @@
-﻿namespace Github.NetCoreWebApp.Core.Domain.Entities
+﻿namespace Domain.Entities
 {
     public class LogEntry
     {

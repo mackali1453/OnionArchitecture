@@ -2534,7 +2534,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Application >= 1.0.0",
-      "Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.25",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.25",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.25"
@@ -2546,11 +2545,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Infrastructure\\Persistance\\Persistance.csproj",
+      "projectUniqueName": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Infrastructure\\Persistance\\Persistance.csproj",
       "projectName": "Persistance",
-      "projectPath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Infrastructure\\Persistance\\Persistance.csproj",
+      "projectPath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Infrastructure\\Persistance\\Persistance.csproj",
       "packagesPath": "C:\\Users\\melik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Infrastructure\\Persistance\\obj\\",
+      "outputPath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Infrastructure\\Persistance\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\melik\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2567,11 +2566,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj"
-            },
-            "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Domain\\Domain.csproj"
+            "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj"
             }
           }
         }
@@ -2617,7 +2613,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
