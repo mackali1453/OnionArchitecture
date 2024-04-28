@@ -1,14 +1,15 @@
-
-
-# Except for these file types
-!*.cs
-!*.proj
-!*.json
-!*.sln
-!*.txt
-
-/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs/Github.NetCoreWebApp/DesignTimeBuild
-/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs/Github.NetCoreWebApp/FileContentIndex
-/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs/Github.NetCoreWebApp/v17
+/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs
+/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs
+/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs
 /.vs
 *.bin
+/.NetCoreWebApp/Core/Application/bin
+/.NetCoreWebApp/Core/Application/obj
+/.NetCoreWebApp/Core/Domain/bin
+/.NetCoreWebApp/Core/Domain/obj
+/.NetCoreWebApp/Infrastructure/Common/bin
+/.NetCoreWebApp/Infrastructure/Common/obj
+/.NetCoreWebApp/Infrastructure/Persistance/bin
+/.NetCoreWebApp/Infrastructure/Persistance/obj
+/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/bin
+/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/obj
