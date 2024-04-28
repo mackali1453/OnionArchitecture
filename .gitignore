@@ -1,8 +1,14 @@
-# Ignore everything
-*
+
 
 # Except for these file types
 !*.cs
 !*.proj
 !*.json
 !*.sln
+!*.txt
+
+/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs/Github.NetCoreWebApp/DesignTimeBuild
+/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs/Github.NetCoreWebApp/FileContentIndex
+/.NetCoreWebApp/Presentation/Github.NetCoreWebApp/.vs/Github.NetCoreWebApp/v17
+/.vs
+*.bin
