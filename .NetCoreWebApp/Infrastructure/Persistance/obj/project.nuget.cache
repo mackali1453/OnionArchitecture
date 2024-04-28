@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PvmJGwojPUoCzxMsIjetkIPRHPHegxkQ4CLmasp7a9fyBH6fm09p6J1H5k2k6GE/uC+2l1P/6u141qgR6ng8LQ==",
+  "dgSpecHash": "q/EAQLDhq+iwX4a0bDzwtlAg7BhLH/K0UYQlq2qBd+o95PWb15c8M77RqQZ+n6hXQv5OU+NtcN+z78yBa3J0BQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Infrastructure\\Persistance\\Persistance.csproj",
+  "projectFilePath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Infrastructure\\Persistance\\Persistance.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\melik\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\melik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

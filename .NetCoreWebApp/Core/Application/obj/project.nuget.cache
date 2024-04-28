@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "khB7JJz3gL67+9zkL9pdfUEFq8LHfwCOT4965V2HCqBMtam4iZyKrQSP3AnnZfPRVWALJiku3qstR5cSDthM/g==",
+  "dgSpecHash": "piYvmrx4mMIkYbkTG/z91JT6IY9vvb2OmXX1ByAfE67x7QruUfEgj0YY041Mzzxst92WSr2XWvE5t0+KAqQjug==",
   "success": true,
-  "projectFilePath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\melik\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\melik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

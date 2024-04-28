@@ -1039,11 +1039,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\melik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\obj\\",
+      "outputPath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\melik\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1060,8 +1060,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\melik\\source\\repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Domain\\Domain.csproj"
+            "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\melik\\Source\\Repos\\OnionArchitecture\\.NetCoreWebApp\\Core\\Domain\\Domain.csproj"
             }
           }
         }
@@ -1113,7 +1113,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

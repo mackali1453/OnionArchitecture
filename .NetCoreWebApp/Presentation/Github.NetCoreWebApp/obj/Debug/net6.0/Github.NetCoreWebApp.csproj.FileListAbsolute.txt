@@ -92,13 +92,10 @@ C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.AssemblyInfoInputs.cache
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.AssemblyInfo.cs
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.csproj.CoreCompileInputs.cache
-C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\refint\Github.NetCoreWebApp.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.pdb
-C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\appsettings.json
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Github.NetCoreWebApp.exe
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Github.NetCoreWebApp.deps.json
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Github.NetCoreWebApp.runtimeconfig.json
@@ -113,7 +110,6 @@ C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
-C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
@@ -121,7 +117,6 @@ C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Identity.Client.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -158,13 +153,11 @@ C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Application.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Common.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Domain.dll
-C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Middleware.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Persistance.dll
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Common.pdb
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Application.pdb
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Domain.pdb
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Persistance.pdb
-C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Middleware.pdb
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\staticwebassets\msbuild.Github.NetCoreWebApp.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\staticwebassets\msbuild.build.Github.NetCoreWebApp.props
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Github.NetCoreWebApp.props
@@ -176,3 +169,11 @@ C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.csproj.CopyComplete
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.genruntimeconfig.cache
 C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\ref\Github.NetCoreWebApp.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.sourcelink.json
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\obj\Debug\net6.0\Github.NetCoreWebApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\appsettings.json
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\melik\Source\Repos\OnionArchitecture\.NetCoreWebApp\Presentation\Github.NetCoreWebApp\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll

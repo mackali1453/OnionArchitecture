@@ -1,10 +1,10 @@
-﻿namespace Github.NetCoreWebApp.Core.Applications.Interfaces
+﻿namespace Github.NetCoreWebApp.Core.Application.Interfaces
 {
     public interface IServiceLogger<in T> where T : class
     {
-        void Info(object message);
-        void Error(object message);
+        Task Info(object message);
+        Task Error(object message);
 
-        void Save(object message);
+        Task Save(object message);
     }
 }
