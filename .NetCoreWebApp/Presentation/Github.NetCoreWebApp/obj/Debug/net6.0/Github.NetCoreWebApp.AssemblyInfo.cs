@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Github.NetCoreWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ab26a47a8e6632a14251f5f69064a42464ad485")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab995d8f44ddeb114ea0ff936202b1ab714405b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Github.NetCoreWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Github.NetCoreWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
