@@ -1,13 +1,15 @@
+# Exclude specific folders and their contents
 
-/vs/**
-/NetCoreWebApp/Core/Application/bin/**
-/NetCoreWebApp/Core/Application/obj/**
-/NetCoreWebApp/Core/Domain/bin/**
-/NetCoreWebApp/Core/Domain/obj/**
-/NetCoreWebApp/Infrastructure/Common/bin/**
-/NetCoreWebApp/Infrastructure/Common/obj/**
-/NetCoreWebApp/Infrastructure/Persistance/bin/**
-/NetCoreWebApp/Infrastructure/Persistance/obj/**
-/NetCoreWebApp/Presentation/Github.NetCoreWebApp/bin/**
-/NetCoreWebApp/Presentation/Github.NetCoreWebApp/obj/**
-/NetCoreWebApp/Presentation/Github.NetCoreWebApp/vs/**
+NetCoreWebApp/Core/Application/bin/
+NetCoreWebApp/Core/Application/obj/
+NetCoreWebApp/Core/Domain/bin/
+NetCoreWebApp/Core/Domain/obj/
+NetCoreWebApp/Infrastructure/Common/bin/
+NetCoreWebApp/Infrastructure/Common/obj/
+NetCoreWebApp/Infrastructure/Persistance/bin/
+NetCoreWebApp/Infrastructure/Persistance/obj/
+NetCoreWebApp/Presentation/Github.NetCoreWebApp/bin/
+NetCoreWebApp/Presentation/Github.NetCoreWebApp/obj/
+NetCoreWebApp/Presentation/Github.NetCoreWebApp/vs/
+*.dll
+/.NetCoreWebApp/Core/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs
