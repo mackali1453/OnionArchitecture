@@ -48,7 +48,7 @@ namespace Application.Services
                 var vehicleRepository = _unitOfWork.GetRepository<AppVehicle>();
                 var vehicle = await vehicleRepository.GetByIdAsync(id);
 
-                if (vehicle == null)
+                if (vehicle != null)
                 {
                     vehicleRepository.Remove(vehicle);
                     await _unitOfWork.SaveChangesAsync();

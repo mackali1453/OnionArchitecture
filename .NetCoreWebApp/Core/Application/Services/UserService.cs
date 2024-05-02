@@ -70,11 +70,6 @@ namespace Application.Services
         {
             try
             {
-                if (updateUserRequest == null)
-                {
-                    throw new ArgumentNullException(nameof(updateUserRequest));
-                }
-
                 var newUser = new AppUser(
                    updateUserRequest.Name,
                    updateUserRequest.Surname,
@@ -110,11 +105,6 @@ namespace Application.Services
         {
             try
             {
-                if (request == null)
-                {
-                    throw new ArgumentNullException(nameof(request));
-                }
-
                 var userRepo = _unitOfWork.GetRepository<AppUser>();
 
                 Expression<Func<AppUser, bool>> condition = person => person.MobilePhoneNumber == request.MobilePhoneNumber || person.UserName == request.UserName;
