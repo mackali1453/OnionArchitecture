@@ -10,16 +10,18 @@
     public class VehicleData
     {
         public int Id { get; set; }
-        public int UserID { get; set; }
         public string VehicleBrand { get; set; }
         public string VehicleModel { get; set; }
         public string VehicleColor { get; set; }
         public string VehiclePlate { get; set; }
+        public string IsActive { get; set; }
 
-        public VehicleData(int ıd, int userID, string vehicleBrand, string vehicleModel, string vehicleColor, string vehiclePlate)
+        public VehicleData()
         {
-            Id = ıd;
-            UserID = userID;
+        }
+        public VehicleData(int id, string vehicleBrand, string vehicleModel, string vehicleColor, string vehiclePlate)
+        {
+            Id = id;
             VehicleBrand = vehicleBrand;
             VehicleModel = vehicleModel;
             VehicleColor = vehicleColor;

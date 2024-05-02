@@ -24,7 +24,20 @@ namespace Github.NetCoreWebApp.Infrastructure.Repositories
                 throw new Exception("Error occurred while creating entity.", ex);
             }
         }
+        public async Task<List<T>> GetAll()
+        {
+            List<T> allData;
+            try
+            {
+                allData = await _dbContext.Set<T>().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while creating entity.", ex);
+            }
 
+            return allData;
+        }
         public async Task<List<T>> GetByFilter(Expression<Func<T, bool>> filter)
         {
             try
@@ -67,7 +80,6 @@ namespace Github.NetCoreWebApp.Infrastructure.Repositories
                 throw new Exception("Error occurred while fetching entity by ID.", ex);
             }
         }
-
         public void Remove(T entity)
         {
             try
@@ -113,6 +125,22 @@ namespace Github.NetCoreWebApp.Infrastructure.Repositories
             catch (Exception ex)
             {
                 throw new Exception("Error occurred while updating entity.", ex);
+            }
+        }
+        public async Task UpdateAsync(IEnumerable<T> entities)
+        {
+            try
+            {
+                foreach (var entity in entities)
+                {
+                    _dbContext.Entry(entity).State = EntityState.Modified;
+                }
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while updating AppVehicle entities.", ex);
             }
         }
     }

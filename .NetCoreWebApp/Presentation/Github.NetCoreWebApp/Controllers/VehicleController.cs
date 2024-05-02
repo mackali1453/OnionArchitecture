@@ -1,13 +1,14 @@
 ﻿using Application.CQRS.Commands;
 using Application.CQRS.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Github.NetCoreWebApp.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]
     public class VehicleController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -18,9 +19,9 @@ namespace Github.NetCoreWebApp.Presentation.Controllers
         }
         [HttpGet]
         [Route("Get")]
-        public async Task<IActionResult> Get(VehicleGetQueryRequest model)
+        public async Task<IActionResult> Get([FromQuery] int id)
         {
-            var result = await this._mediator.Send(model);
+            var result = await this._mediator.Send(new VehicleGetQueryRequest { Id = id });
 
             return Ok(result);
         }

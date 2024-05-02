@@ -2,6 +2,7 @@
 
 namespace Domain.Entities.Aggregates
 {
+    [Serializable]
     public class AppVehicle : BaseEntity, IAggregateRoot
     {
         public string VehicleBrand { get; private set; }
@@ -13,8 +14,9 @@ namespace Domain.Entities.Aggregates
         private AppUser _appUser = new AppUser();
         public AppUser AppUser { get { return _appUser; } }
 
-        public AppVehicle(string vehiclePlate, string vehicleColor, string vehicleModel, string vehicleBrand, bool ısActive)
+        public AppVehicle(string vehiclePlate, string vehicleColor, string vehicleModel, string vehicleBrand, bool ısActive, int id = 0)
         {
+            Id = id;
             VehiclePlate = vehiclePlate;
             VehicleColor = vehicleColor;
             VehicleModel = vehicleModel;
@@ -28,6 +30,10 @@ namespace Domain.Entities.Aggregates
         public void SetRelationWithUser(AppUser user)
         {
             _appUser = user;
+        }
+        public void UpdateIsActive(bool isActive)
+        {
+            IsActive = isActive;
         }
     }
 }

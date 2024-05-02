@@ -3,97 +3,139 @@ using Application.Dto;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities.Aggregates;
-using Github.NetCoreWebApp.Core.Application.Interfaces;
+using System.Linq.Expressions;
 
 namespace Application.Services
 {
     public class VehicleService : IVehicleService
     {
-        private readonly IWebApiIuow _iUow;
+        private readonly IWebApiIuow _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IServiceLogger<VehicleService> _logger;
-        public VehicleService(IWebApiIuow iUow, IMapper mapper, IServiceLogger<VehicleService> logger)
+
+        public VehicleService(IWebApiIuow unitOfWork, IMapper mapper)
         {
-            _iUow = iUow;
-            _mapper = mapper;
-            _logger = logger;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<VehicleResponseDto> GetById(int id)
         {
-            var vehicle = new AppVehicle();
-
             try
             {
-                var vehicleRepository = _iUow.GetRepository<AppVehicle>();
+                var vehicleRepository = _unitOfWork.GetRepository<AppVehicle>();
+                Expression<Func<AppVehicle, bool>> condition = vehicle => vehicle.Id == id;
+                var eagerExpression = new Expression<Func<AppVehicle, object>>[] { e => e.AppUser };
 
-                vehicle = await vehicleRepository.GetByIdAsync(id);
+                var vehicle = await vehicleRepository.GetByFilterEager(condition, eagerExpression);
+
+                if (vehicle == null)
+                {
+                    return new VehicleResponseDto(true, "Vehicle not found!", null);
+                }
+
+                return new VehicleResponseDto(true, "", _mapper.Map<VehicleData>(vehicle));
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Failed to get vehicle by id.", ex);
             }
-
-            return new VehicleResponseDto(true, "", _mapper.Map<VehicleData>(vehicle));
         }
+
         public async Task Delete(int id)
         {
             try
             {
-                var vehicleRepository = _iUow.GetRepository<AppVehicle>();
+                var vehicleRepository = _unitOfWork.GetRepository<AppVehicle>();
                 var vehicle = await vehicleRepository.GetByIdAsync(id);
-                vehicleRepository.Remove(vehicle);
-                await _iUow.SaveChangesAsync();
+
+                if (vehicle == null)
+                {
+                    vehicleRepository.Remove(vehicle);
+                    await _unitOfWork.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Failed to delete vehicle.", ex);
             }
         }
+
         public async Task<VehicleResponseDto> Update(VehicleUpdateCommandRequest request)
         {
-            var newVehicle = new AppVehicle(request.VehiclePlate, request.VehicleColor, request.VehicleModel, request.VehicleBrand, request.IsActive);
-
             try
             {
-                var vehicleRepository = _iUow.GetRepository<AppVehicle>();
+                var vehicleRepository = _unitOfWork.GetRepository<AppVehicle>();
                 var oldVehicle = await vehicleRepository.GetByIdAsync(request.VehicleId);
 
-                await vehicleRepository.UpdateAsync(newVehicle, oldVehicle);
+                if (oldVehicle == null)
+                {
+                    return new VehicleResponseDto(true, "Vehicle not found!", null);
+                }
 
-                await _iUow.SaveChangesAsync();
+                if (oldVehicle.IsActive == request.IsActive)
+                {
+                    var newVehicle = _mapper.Map<AppVehicle>(request);
+                    await vehicleRepository.UpdateAsync(newVehicle, oldVehicle);
+                    await _unitOfWork.SaveChangesAsync();
+
+                    return new VehicleResponseDto(true, "", _mapper.Map<VehicleData>(newVehicle));
+                }
+
+                Expression<Func<AppVehicle, bool>> condition = vehicle => vehicle.AppUser.Id == request.UserId && vehicle.IsActive == true;
+                var oldActiveVehicles = (await vehicleRepository.GetByFilter(condition));
+
+                if (oldActiveVehicles != null && oldActiveVehicles.Count > 0)
+                {
+                    await vehicleRepository.UpdateAsync(oldActiveVehicles.Select(x =>
+                    {
+                        x.UpdateIsActive(false);
+                        return x;
+                    }));
+                }
+
+                var updatedVehicle = _mapper.Map<AppVehicle>(request);
+                await vehicleRepository.UpdateAsync(updatedVehicle, oldVehicle);
+                await _unitOfWork.SaveChangesAsync();
+
+                return new VehicleResponseDto(true, "", _mapper.Map<VehicleData>(updatedVehicle));
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Failed to update vehicle.", ex);
             }
-
-            return new VehicleResponseDto(true, "", _mapper.Map<VehicleData>(newVehicle));
         }
+
         public async Task<VehicleResponseDto> Create(VehicleCreateCommandRequest request)
         {
-            var newVehicle = new AppVehicle();
-
             try
             {
-                var vehicleRepository = _iUow.GetRepository<AppVehicle>();
-                var appUserRepository = _iUow.GetRepository<AppUser>();
+                var vehicleRepository = _unitOfWork.GetRepository<AppVehicle>();
+                var appUserRepository = _unitOfWork.GetRepository<AppUser>();
 
                 var user = await appUserRepository.GetByIdAsync(request.UserId);
 
-                newVehicle = new AppVehicle(request.VehiclePlate, request.VehicleColor, request.VehicleModel, request.VehicleBrand, request.IsActive);
+                if (user == null)
+                {
+                    return new VehicleResponseDto(true, "User not found!", null);
+                }
+
+                var newVehicle = _mapper.Map<AppVehicle>(request);
                 newVehicle.SetRelationWithUser(user);
 
                 await vehicleRepository.CreateAsync(newVehicle);
+                await _unitOfWork.SaveChangesAsync();
 
-                await _iUow.SaveChangesAsync();
+                return new VehicleResponseDto(true, "", _mapper.Map<VehicleData>(newVehicle));
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Failed to create vehicle.", ex);
             }
+        }
 
-            return new VehicleResponseDto(true, "", _mapper.Map<VehicleData>(newVehicle));
+        public Task<VehicleResponseDto> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

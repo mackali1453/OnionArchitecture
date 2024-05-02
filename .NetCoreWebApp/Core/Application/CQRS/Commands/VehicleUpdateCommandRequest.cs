@@ -5,6 +5,7 @@ namespace Application.CQRS.Commands
 {
     public class VehicleUpdateCommandRequest : IRequest<VehicleResponseDto>
     {
+        public int UserId { get; set; }
         public int VehicleId { get; set; }
         public string VehiclePlate { get; set; }
         public string VehicleColor { get; set; }

@@ -5,14 +5,13 @@ namespace Application.CQRS.Commands
 {
     public class UserUpdateCommandRequest : IRequest<UserResponseDto>
     {
-        public int Id { get; }
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public string MobilePhoneNumber { get; private set; }
-        public long Tckn { get; private set; }
-        public string Gender { get; private set; }
-        public string UserName { get; private set; }
-        public string Password { get; private set; }
-        public List<int> Roles { get; set; }
+        public int Id { get; set; }
+        public string ?Name { get; set; }
+        public string ?Surname { get; set; }
+        public string ?MobilePhoneNumber { get; set; }
+        public long Tckn { get; set; }
+        public string ?Gender { get; set; }
+        public string ?UserName { get; set; }
+        public string ?Password { get; set; }
     }
 }

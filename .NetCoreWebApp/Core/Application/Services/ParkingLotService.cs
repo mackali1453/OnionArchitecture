@@ -1,98 +1,108 @@
 ﻿using Application.CQRS.Commands;
+using Application.CQRS.Queries;
 using Application.Dto;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities.Aggregates;
-using Github.NetCoreWebApp.Core.Application.Interfaces;
 
 namespace Application.Services
 {
     public class ParkingLotService : IParkingLotService
     {
-        private readonly IWebApiIuow _iUow;
+        private readonly IWebApiIuow _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IServiceLogger<ParkingLotService> _logger;
+        private readonly IUtility _utility;
 
-        public ParkingLotService(IWebApiIuow iUow, IMapper mapper, IServiceLogger<ParkingLotService> logger)
+        public ParkingLotService(IWebApiIuow unitOfWork, IMapper mapper, IUtility utility)
         {
-            _iUow = iUow;
-            _mapper = mapper;
-            _logger = logger;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _utility = utility ?? throw new ArgumentNullException(nameof(utility));
+        }
+
+        public async Task<ParkingLotListResponseDto> GetCoordinatesInsideCircle(ParkingLotCoordinatesInsideCircleRequest request)
+        {
+            try
+            {
+                var parkingLotsInsideCircle = new List<ParkingLot>();
+
+                var parkingLotRepo = _unitOfWork.GetRepository<ParkingLot>();
+                var allParkingLots = await parkingLotRepo.GetAll();
+
+                foreach (var parkingLot in allParkingLots)
+                {
+                    if (_utility.IsCoordinateInsideCircle(parkingLot.Latitude, parkingLot.Longitude, request.CenterLatitude, request.CenterLongitude, request.Radius))
+                    {
+                        parkingLotsInsideCircle.Add(parkingLot);
+                    }
+                }
+
+                return new ParkingLotListResponseDto(true, "", _mapper.Map<List<ParkingLotData>>(parkingLotsInsideCircle));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to retrieve parking lots inside circle.", ex);
+            }
         }
 
         public async Task<ParkingLotResponseDto> GetById(int id)
         {
-            var parkingLot = new ParkingLot();
-
             try
             {
-                var parkingLotRepository = _iUow.GetRepository<ParkingLot>();
-                parkingLot = await parkingLotRepository.GetByIdAsync(id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-            return new ParkingLotResponseDto(true, "", _mapper.Map<ParkingLotData>(parkingLot));
-        }
-        public async Task Delete(int id)
-        {
-            try
-            {
-                var parkingLotRepository = _iUow.GetRepository<ParkingLot>();
+                var parkingLotRepository = _unitOfWork.GetRepository<ParkingLot>();
                 var parkingLot = await parkingLotRepository.GetByIdAsync(id);
-                parkingLotRepository.Remove(parkingLot);
-                await _iUow.SaveChangesAsync();
+
+                if (parkingLot == null)
+                {
+                    return new ParkingLotResponseDto(true, $"Parking lot with ID {id} not found.", null);
+                }
+
+                return new ParkingLotResponseDto(true, "", _mapper.Map<ParkingLotData>(parkingLot));
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception($"Failed to retrieve parking lot with ID {id}.", ex);
             }
         }
+
         public async Task<ParkingLotResponseDto> Update(ParkingLotUpdateCommandRequest updateParkingLotRequest)
         {
-            var newParkingLot = new ParkingLot(updateParkingLotRequest.Latitude, updateParkingLotRequest.Longitude);
-
             try
             {
-                var parkingLotRepository = _iUow.GetRepository<ParkingLot>();
-
+                var parkingLotRepository = _unitOfWork.GetRepository<ParkingLot>();
                 var parkingLot = await parkingLotRepository.GetByIdAsync(updateParkingLotRequest.Id);
 
+                if (parkingLot == null)
+                {
+                    return new ParkingLotResponseDto(true, $"Parking lot with ID {updateParkingLotRequest.Id} not found.", null);
+                }
+
+                var newParkingLot = _mapper.Map<ParkingLot>(updateParkingLotRequest);
+                newParkingLot.AddUser(parkingLot.AppUserId);
                 await parkingLotRepository.UpdateAsync(newParkingLot, parkingLot);
+                await _unitOfWork.SaveChangesAsync();
 
-                await _iUow.SaveChangesAsync();
+                return new ParkingLotResponseDto(true, "", _mapper.Map<ParkingLotData>(newParkingLot));
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Failed to update parking lot.", ex);
             }
-
-            return new ParkingLotResponseDto(true, "", _mapper.Map<ParkingLotData>(newParkingLot));
         }
-        public async Task<ParkingLotResponseDto> Create(ParkingLotCreateCommandRequest request)
+
+        public Task Delete(int id)
         {
-            var newParkingLot = new ParkingLot(request.Latitude, request.Longitude);
+            throw new NotImplementedException();
+        }
 
-            try
-            {
-                var parkingLotRepository = _iUow.GetRepository<ParkingLot>();
-                var appUserRepository = _iUow.GetRepository<AppUser>();
+        public Task<ParkingLotResponseDto> Create(object request)
+        {
+            throw new NotImplementedException();
+        }
 
-                var user = await appUserRepository.GetByIdAsync(request.UserId);
-                newParkingLot.SetRelationWithUser(user);
-
-                await parkingLotRepository.CreateAsync(newParkingLot);
-
-                await _iUow.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-            return new ParkingLotResponseDto(true, "", _mapper.Map<ParkingLotData>(newParkingLot));
+        public Task<ParkingLotResponseDto> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

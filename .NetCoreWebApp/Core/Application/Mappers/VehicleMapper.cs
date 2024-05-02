@@ -13,6 +13,7 @@ namespace Application.Mappers
                         .ForMember(dest => dest.VehicleBrand, opt => opt.MapFrom(src => src.VehicleBrand))
                         .ForMember(dest => dest.VehicleModel, opt => opt.MapFrom(src => src.VehicleModel))
                         .ForMember(dest => dest.VehicleColor, opt => opt.MapFrom(src => src.VehicleColor))
+                        .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.IsActive))
                         .ForMember(dest => dest.VehiclePlate, opt => opt.MapFrom(src => src.VehiclePlate)).ReverseMap();
         }
     }

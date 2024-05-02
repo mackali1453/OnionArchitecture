@@ -11,7 +11,5 @@ namespace Github.NetCoreWebApp.Core.Applications.Dto
     public class LoginResponse
     {
         public string AccessToken { get; set; }
-
-        public LoginResponse(string token) { AccessToken = token; }
     }
 }

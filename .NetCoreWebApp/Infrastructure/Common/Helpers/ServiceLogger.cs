@@ -12,10 +12,10 @@ namespace Github.NetCoreWebApp.Infrastructure.Common.Helpers
         private readonly string _categoryName;
         private readonly LogLevel _minimumLogLevel;
         private ILoggerIuow _uow;
-        public ServiceLogger(IOptions<Logging> appsettings, ILoggerIuow uow)
+        public ServiceLogger(IOptions<AppSettings> appsettings, ILoggerIuow uow)
         {
             _categoryName = typeof(T).Name;
-            _minimumLogLevel = Enum.Parse<LogLevel>(appsettings.Value.LogLevel.LogLevel);
+            _minimumLogLevel = Enum.Parse<LogLevel>(appsettings.Value.Logging.LogLevel.LogLevel);
             _uow = uow;
         }
 

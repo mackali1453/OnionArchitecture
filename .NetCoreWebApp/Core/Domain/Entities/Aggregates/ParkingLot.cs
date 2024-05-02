@@ -4,13 +4,14 @@ namespace Domain.Entities.Aggregates
 {
     public class ParkingLot : BaseEntity, IAggregateRoot
     {
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
         private AppUser _appUser = new AppUser();
         public AppUser AppUser => _appUser;
-        public int AppUserId { get; set; }
-        public ParkingLot(long latitude, long longitude)
+        public int AppUserId { get;private set; }
+        public ParkingLot(double latitude, double longitude, int id = 0)
         {
+            Id = id;
             Latitude = latitude;
             Longitude = longitude;
         }
@@ -18,10 +19,13 @@ namespace Domain.Entities.Aggregates
         public ParkingLot()
         {
         }
-
-        public void SetRelationWithUser(AppUser user)
+        public void AddUser(int userID)
         {
-            _appUser = user;
+            AppUserId = userID;
         }
+        //public void SetRelationWithUser(AppUser user)
+        //{
+        //    _appUser = user;
+        //}
     }
 }

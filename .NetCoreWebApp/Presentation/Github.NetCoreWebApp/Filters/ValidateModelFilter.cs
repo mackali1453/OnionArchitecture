@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace Github.NetCoreWebApp.Presentation.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class ValidateModelAttribute : Attribute, IActionFilter
+    public class ValidateModelFilter : Attribute, IActionFilter
     {
-        private readonly IServiceLogger<ValidateModelAttribute> _logger;
+        private readonly IServiceLogger<ValidateModelFilter> _logger;
 
-        public ValidateModelAttribute(IServiceLogger<ValidateModelAttribute> logger)
+        public ValidateModelFilter(IServiceLogger<ValidateModelFilter> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }

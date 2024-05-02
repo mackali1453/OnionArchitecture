@@ -5,8 +5,8 @@ namespace Application.CQRS.Commands
 {
     public class ParkingLotUpdateCommandRequest: IRequest<ParkingLotResponseDto>
     {
-        public long Latitude { get;set; }
-        public long Longitude { get;set; }
+        public double Latitude { get;set; }
+        public double Longitude { get;set; }
         public int Id { get; set; }
     }
 }

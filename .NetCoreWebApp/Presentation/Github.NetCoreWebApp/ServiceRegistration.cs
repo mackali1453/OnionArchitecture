@@ -7,7 +7,7 @@ namespace Github.NetCoreWebApp.Presentation
     {
         public static void AddMiddlewareDependencies(this IServiceCollection builder)
         {
-            builder.AddScoped<ValidateModelAttribute>();
+            builder.AddScoped<ValidateModelFilter>();
             builder.AddScoped<RequestResponseLoggingMiddleware>();
         }
     }

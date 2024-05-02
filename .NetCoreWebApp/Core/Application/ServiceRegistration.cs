@@ -1,4 +1,5 @@
 ﻿using Application.CQRS.Commands;
+using Application.CQRS.Handlers.ParkingLot;
 using Application.CQRS.Handlers.User;
 using Application.CQRS.Handlers.Vehicle;
 using Application.CQRS.Queries;
@@ -22,6 +23,7 @@ namespace Github.NetCoreWebApp.Core.Application
             {
                 opt.AddProfile(new UserMapper());
                 opt.AddProfile(new VehicleMapper());
+                opt.AddProfile(new ParkingLotMapper());
             });
             var mapper = configuration.CreateMapper();
             services.AddSingleton(mapper);
@@ -31,6 +33,8 @@ namespace Github.NetCoreWebApp.Core.Application
                 typeof(UserService));
             services.AddScoped(typeof(IVehicleService),
                 typeof(VehicleService));
+            services.AddScoped(typeof(IParkingLotService),
+                typeof(ParkingLotService));
 
             services.AddTransient<IRequestHandler<LoginQueryRequest, LoginResponseDto>, LoginQueryRequestHandler>();
             services.AddTransient<IRequestHandler<UserCreateCommandRequest, UserResponseDto>, UserCreateCommandHandler>();
@@ -42,6 +46,10 @@ namespace Github.NetCoreWebApp.Core.Application
             services.AddTransient<IRequestHandler<VehicleDeleteCommandRequest, Unit>, VehicleDeleteCommandHandler>();
             services.AddTransient<IRequestHandler<VehicleUpdateCommandRequest, VehicleResponseDto>, VehicleUpdateCommandHandler>();
             services.AddTransient<IRequestHandler<VehicleGetQueryRequest, VehicleResponseDto>, VehicleGetQueryHandler>();
+
+            services.AddTransient<IRequestHandler<ParkingLotUpdateCommandRequest, ParkingLotResponseDto>, ParkingLotUpdateCommandHandler>();
+            services.AddTransient<IRequestHandler<ParkingLotGetQueryRequest, ParkingLotResponseDto>, ParkingLotGetQueryHandler>();
+            services.AddTransient<IRequestHandler<ParkingLotCoordinatesInsideCircleRequest, ParkingLotListResponseDto>, ParkingLotGetCoordinatesInsideCircleQueryHandler>();
         }
     }
 }

@@ -9,6 +9,13 @@
 
     public class ParkingLotData
     {
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
         public ParkingLotData() { }
+        public ParkingLotData(string latitude, string longitude)
+        {
+            Latitude = latitude;
+            Longitude = longitude;
+        }
     }
 }

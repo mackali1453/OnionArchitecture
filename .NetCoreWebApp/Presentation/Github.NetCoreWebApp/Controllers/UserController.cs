@@ -8,7 +8,7 @@ namespace Github.NetCoreWebApp.Presentation.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
+    [Authorize]
     public class UserController : ControllerBase
     {
 
@@ -18,15 +18,16 @@ namespace Github.NetCoreWebApp.Presentation.Controllers
         {
             _mediator = mediator;
         }
+        
         [HttpGet]
         [Route("Get")]
-        [Authorize]
-        public async Task<IActionResult> Get(UserGetQueryRequest model)
+        public async Task<IActionResult> Get([FromQuery] int id)
         {
-            var result = await this._mediator.Send(model);
+            var result = await this._mediator.Send(new UserGetQueryRequest { Id = id });
 
             return Ok(result);
         }
+        [AllowAnonymous]
         [HttpPost]
         [Route("Create")]
         public async Task<IActionResult> Create(UserCreateCommandRequest model)
@@ -37,7 +38,7 @@ namespace Github.NetCoreWebApp.Presentation.Controllers
         }
         [HttpPut]
         [Route("Update")]
-        [Authorize]
+        
         public async Task<IActionResult> Update(UserUpdateCommandRequest model)
         {
             var result = await this._mediator.Send(model);
@@ -46,7 +47,7 @@ namespace Github.NetCoreWebApp.Presentation.Controllers
         }
         [HttpDelete]
         [Route("Delete")]
-        [Authorize]
+        
         public async Task<IActionResult> Delete(UserDeleteCommandRequest model)
         {
             var result = await this._mediator.Send(model);

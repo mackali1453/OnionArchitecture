@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces;
-using Newtonsoft.Json;
+using System.Reflection;
 using System.Security.Cryptography;
 
 namespace Github.NetCoreWebApp.Infrastructure.Common.Helpers
@@ -9,13 +9,32 @@ namespace Github.NetCoreWebApp.Infrastructure.Common.Helpers
         private const int SaltSize = 16;
         private const int KeySize = 32;
         private const int Iterations = 10000;
-        public T DeepCopy<T>(T obj)
+        public TU DeepCopy<T, TU>(T source, TU dest)
         {
-            string json = JsonConvert.SerializeObject(obj);
+            var sourceFields = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy).ToList();
+            var destFields = typeof(TU).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy).ToList();
+            foreach (var sourceField in sourceFields)
+            {
+                if (destFields.Any(x => x.Name == sourceField.Name))
+                {
+                    var f = destFields.First(x => x.Name == sourceField.Name);
+                    f.SetValue(dest, sourceField.GetValue(source));
+                }
+            }
 
-            T copy = JsonConvert.DeserializeObject<T>(json);
+            return dest;
+        }
+        public bool IsCoordinateInsideCircle(double lat1, double lon1, double lat2, double lon2, double radius)
+        {
+            double dLat = Math.PI * (lat2 - lat1) / 180.0;
+            double dLon = Math.PI * (lon2 - lon1) / 180.0;
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                       Math.Cos(Math.PI * lat1 / 180.0) * Math.Cos(Math.PI * lat2 / 180.0) *
+                       Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            double distance = 6371 * c; // Radius of the Earth in kilometers
 
-            return copy;
+            return distance <= radius;
         }
         public string HashPassword(string password)
         {

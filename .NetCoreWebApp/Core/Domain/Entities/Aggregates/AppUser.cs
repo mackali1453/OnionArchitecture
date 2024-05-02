@@ -24,8 +24,9 @@ namespace Domain.Entities.Aggregates
         public AppUser() { }
 
         public AppUser(string name, string surname, string mobilePhoneNumber,
-                       string userName, string password, long tckn, string gender)
+                       string userName, string password, long tckn, string gender, int id = 0)
         {
+            Id = id;
             Name = name;
             Surname = surname;
             MobilePhoneNumber = mobilePhoneNumber;
@@ -37,6 +38,7 @@ namespace Domain.Entities.Aggregates
             LogInTryCount = 0;
             LockedUpExpireDate = DateTime.MinValue;
         }
+
         public void SetRelationWithVehicle(AppVehicle vehicle)
         {
             _appVehicle.Add(vehicle);
