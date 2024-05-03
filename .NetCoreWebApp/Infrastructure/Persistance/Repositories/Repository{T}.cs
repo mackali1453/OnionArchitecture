@@ -135,8 +135,6 @@ namespace Github.NetCoreWebApp.Infrastructure.Repositories
                 {
                     _dbContext.Entry(entity).State = EntityState.Modified;
                 }
-
-                await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {

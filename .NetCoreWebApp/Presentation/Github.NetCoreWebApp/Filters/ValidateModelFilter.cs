@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using Github.NetCoreWebApp.Core.Application.Interfaces;
 using Github.NetCoreWebApp.Core.Application.ValidationRules;
+using Github.NetCoreWebApp.Infrastructure.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 

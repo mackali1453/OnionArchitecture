@@ -1,9 +1,8 @@
-﻿using Application.Interfaces;
-using Domain.Entities;
-using Github.NetCoreWebApp.Core.Application.Interfaces;
+﻿using Common.Interfaces;
+using Github.NetCoreWebApp.Infrastructure.Common.Interfaces;
+using Github.NetCoreWebApp.Infrastructure.Common.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace Github.NetCoreWebApp.Infrastructure.Common.Helpers
 {
@@ -11,39 +10,23 @@ namespace Github.NetCoreWebApp.Infrastructure.Common.Helpers
     {
         private readonly string _categoryName;
         private readonly LogLevel _minimumLogLevel;
-        private ILoggerIuow _uow;
-        public ServiceLogger(IOptions<AppSettings> appsettings, ILoggerIuow uow)
+        private ILogService _logService;
+        public ServiceLogger(IOptions<LogSettings> logSettings, ILogService logService)
         {
             _categoryName = typeof(T).Name;
-            _minimumLogLevel = Enum.Parse<LogLevel>(appsettings.Value.Logging.LogLevel.LogLevel);
-            _uow = uow;
+            _minimumLogLevel = Enum.Parse<LogLevel>(logSettings.Value.LogLevel.LogLevel);
+            _logService = logService;
         }
 
         public async Task Info(object message)
         {
             if (_minimumLogLevel >= LogLevel.Information)
-                await Save(message);
+                await _logService.Save(message, _categoryName);
         }
         public async Task Error(object message)
         {
             if (_minimumLogLevel >= LogLevel.Error)
-                await Save(message);
-        }
-
-        public async Task Save(object message)
-        {
-            var logEntry = new LogEntry
-            {
-                ServiceName = _categoryName,
-                Timestamp = DateTime.UtcNow,
-                Message = JsonConvert.SerializeObject(message)
-            };
-
-            var context = _uow.GetRepository<LogEntry>();
-
-            await context.CreateAsync(logEntry);
-
-            await _uow.SaveChangesAsync();
+                await _logService.Save(message, _categoryName);
         }
     }
 }

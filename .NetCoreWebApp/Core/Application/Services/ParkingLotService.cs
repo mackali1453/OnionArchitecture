@@ -3,6 +3,7 @@ using Application.CQRS.Queries;
 using Application.Dto;
 using Application.Interfaces;
 using AutoMapper;
+using Common.Interfaces;
 using Domain.Entities.Aggregates;
 
 namespace Application.Services

@@ -2,6 +2,7 @@
 using Application.Dto;
 using Application.Interfaces;
 using AutoMapper;
+using Common.Interfaces;
 using Domain.Entities.Aggregates;
 using System.Linq.Expressions;
 

@@ -1,5 +1,4 @@
 using Domain.Entities;
-using Domain.Entities.Aggregates;
 using Github.NetCoreWebApp.Core.Application;
 using Github.NetCoreWebApp.Filters;
 using Github.NetCoreWebApp.Infrastructure.Common;
@@ -8,7 +7,6 @@ using Github.NetCoreWebApp.Presentation;
 using Github.NetCoreWebApp.Presentation.Middlewares;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -47,7 +45,7 @@ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSet
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddPersistanceDependencies(builder.Configuration.GetSection("AppSettings:ConnectionStrings:Local").Value);
 builder.Services.AddApplicationDependencies();
-builder.Services.AddCommonDependencies();
+builder.Services.AddCommonDependencies(builder.Configuration);
 builder.Services.AddMiddlewareDependencies();
 
 

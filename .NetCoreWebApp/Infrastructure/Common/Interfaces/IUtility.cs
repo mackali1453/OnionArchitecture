@@ -1,4 +1,4 @@
-﻿namespace Application.Interfaces
+﻿namespace Common.Interfaces
 {
     public interface IUtility
     {

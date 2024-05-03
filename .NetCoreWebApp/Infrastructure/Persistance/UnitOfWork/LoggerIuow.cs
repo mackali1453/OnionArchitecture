@@ -1,5 +1,4 @@
 ﻿using Application.Interfaces;
-using Domain.Entities;
 using Github.NetCoreWebApp.Core.Applications.Interfaces;
 using Github.NetCoreWebApp.Infrastructure.Persistance.Context;
 using Github.NetCoreWebApp.Infrastructure.Repositories;

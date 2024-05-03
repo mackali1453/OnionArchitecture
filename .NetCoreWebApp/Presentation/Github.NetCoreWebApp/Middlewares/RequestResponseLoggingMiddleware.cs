@@ -1,4 +1,4 @@
-﻿using Github.NetCoreWebApp.Core.Application.Interfaces;
+﻿using Github.NetCoreWebApp.Infrastructure.Common.Interfaces;
 using System.Text;
 
 namespace Github.NetCoreWebApp.Presentation.Middlewares

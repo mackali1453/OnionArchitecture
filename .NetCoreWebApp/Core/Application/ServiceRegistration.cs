@@ -8,6 +8,7 @@ using Application.Interfaces;
 using Application.Mappers;
 using Application.Services;
 using AutoMapper;
+using Common.Interfaces;
 using Github.NetCoreWebApp.Core.Application.Services;
 using Github.NetCoreWebApp.Core.Applications.Dto;
 using MediatR;
@@ -35,6 +36,7 @@ namespace Github.NetCoreWebApp.Core.Application
                 typeof(VehicleService));
             services.AddScoped(typeof(IParkingLotService),
                 typeof(ParkingLotService));
+            services.AddScoped<ILogService, LogService>();
 
             services.AddTransient<IRequestHandler<LoginQueryRequest, LoginResponseDto>, LoginQueryRequestHandler>();
             services.AddTransient<IRequestHandler<UserCreateCommandRequest, UserResponseDto>, UserCreateCommandHandler>();

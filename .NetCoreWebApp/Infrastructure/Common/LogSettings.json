@@ -1,0 +1,9 @@
+{
+  "LogSettings": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "LogLevel": "Error"
+    }
+  }
+}
