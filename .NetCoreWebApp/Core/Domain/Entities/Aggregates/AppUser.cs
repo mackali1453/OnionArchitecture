@@ -15,12 +15,6 @@ namespace Domain.Entities.Aggregates
         public int LogInTryCount { get; private set; }
         public DateTime LockedUpExpireDate { get; private set; }
 
-        private readonly List<AppVehicle> _appVehicle = new List<AppVehicle>();
-        public IReadOnlyCollection<AppVehicle> AppVehicle => _appVehicle.AsReadOnly();
-
-
-        private ParkingLot _parkingLot;
-        public ParkingLot ParkingLot => _parkingLot;
         public AppUser() { }
 
         public AppUser(string name, string surname, string mobilePhoneNumber,
@@ -37,15 +31,6 @@ namespace Domain.Entities.Aggregates
             IsLockedOut = false;
             LogInTryCount = 0;
             LockedUpExpireDate = DateTime.MinValue;
-        }
-
-        public void SetRelationWithVehicle(AppVehicle vehicle)
-        {
-            _appVehicle.Add(vehicle);
-        }
-        public void SetRelationWithParkingLot(ParkingLot parkingLot)
-        {
-            _parkingLot = parkingLot;
         }
     }
 }

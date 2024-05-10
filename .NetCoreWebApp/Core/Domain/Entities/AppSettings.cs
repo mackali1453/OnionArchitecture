@@ -30,5 +30,6 @@
         public JwtSettings JwtSettings { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
         public string AllowedHosts { get; set; }
+        public int DelayTime { get; set; }
     }
 }

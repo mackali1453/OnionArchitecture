@@ -41,7 +41,7 @@ namespace Github.NetCoreWebApp.Core.Application.Services
                 {
                     return new LoginResponseDto(false, "User not found", null);
                 }
-                else if (!_utility.VerifyPassword(password, user.Password))
+                else if (!_utility.VerifyPassword(password, user.FirstOrDefault().Password))
                     return new LoginResponseDto(false, "Invalid Password", null);
 
                 var token = GenerateJwtToken(username);

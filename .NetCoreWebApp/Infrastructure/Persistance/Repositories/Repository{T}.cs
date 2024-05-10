@@ -50,7 +50,7 @@ namespace Github.NetCoreWebApp.Infrastructure.Repositories
             }
         }
 
-        public async Task<T?> GetByFilterEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties)
+        public async Task<List<T>?> GetByFilterEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace Github.NetCoreWebApp.Infrastructure.Repositories
                     query = query.Include(includeProperty);
                 }
 
-                return await query.SingleOrDefaultAsync(filter);
+                return await query.Where(filter).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -138,7 +138,7 @@ namespace Github.NetCoreWebApp.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error occurred while updating AppVehicle entities.", ex);
+                throw new Exception("Error occurred while updating product entities.", ex);
             }
         }
     }

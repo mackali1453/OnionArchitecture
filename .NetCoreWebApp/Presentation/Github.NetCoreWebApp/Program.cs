@@ -4,7 +4,6 @@ using Github.NetCoreWebApp.Filters;
 using Github.NetCoreWebApp.Infrastructure.Common;
 using Github.NetCoreWebApp.Infrastructure.Persistance;
 using Github.NetCoreWebApp.Presentation;
-using Github.NetCoreWebApp.Presentation.Middlewares;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -60,7 +59,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseMiddleware<RequestResponseLoggingMiddleware>();
+//app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
 app.MapControllers();
 app.Run();

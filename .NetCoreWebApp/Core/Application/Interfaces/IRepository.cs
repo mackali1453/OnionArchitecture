@@ -12,6 +12,6 @@ namespace Github.NetCoreWebApp.Core.Applications.Interfaces
         Task UpdateAsync(IEnumerable<T> entities);
         void Remove(T entity);
         Task RemoveEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);
-        Task<T> GetByFilterEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);
+        Task<List<T>?> GetByFilterEager(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);
     }
 }
