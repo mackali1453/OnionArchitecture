@@ -37,7 +37,7 @@ namespace Github.NetCoreWebApp.Core.Application.Services
 
                 var user = await userRepository.GetByFilterEager(condition);
 
-                if (user == null)
+                if (user == null || user.Count == 0)
                 {
                     return new LoginResponseDto(false, "User not found", null);
                 }

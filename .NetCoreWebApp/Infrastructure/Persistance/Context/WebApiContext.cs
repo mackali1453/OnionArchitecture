@@ -8,6 +8,7 @@ namespace Github.NetCoreWebApp.Infrastructure.Persistance.Context
     {
         public DbSet<PriceChange> PriceChange => this.Set<PriceChange>();
         public DbSet<Product> Product => this.Set<Product>();
+        public DbSet<AppUser> AppUser => this.Set<AppUser>();
 
         public WebApiContext(DbContextOptions<WebApiContext> options) : base(options)
         {

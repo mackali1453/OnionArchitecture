@@ -1,5 +1,4 @@
 ﻿using Application.CQRS.Commands;
-using Application.CQRS.Queries;
 using Application.Dto;
 using Application.Interfaces;
 using AutoMapper;
@@ -31,9 +30,11 @@ namespace Application.CQRS.Handlers
                 {
                     return new ProductResponseDto(false, string.Join(",", validationResult.Errors.Select(e => e.ErrorMessage)), null);
                 }
+
                 var repository = _unitOfWork.GetRepository<Product>();
                 var newProduct = new Product(request.ProductName, request.Stock);
                 newProduct.AddPrice(new Domain.Entities.Aggregates.PriceChange(request.Price, DateTime.Now));
+
                 await repository.CreateAsync(newProduct);
                 await _unitOfWork.SaveChangesAsync();
 
@@ -41,7 +42,7 @@ namespace Application.CQRS.Handlers
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to Product .", ex);
+                throw new Exception("Failed to create product.", ex);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Application.CQRS.Queries;
+﻿using Application.CQRS.Commands;
+using Application.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -34,6 +35,15 @@ namespace Github.NetCoreWebApp.Presentation.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             return Ok();
+        }
+        [HttpPost]
+        [Route("Register")]
+
+        public async Task<IActionResult> Register(UserCreateCommandRequest model)
+        {
+            var result = await this._mediator.Send(model);
+
+            return Ok(result);
         }
     }
 }
