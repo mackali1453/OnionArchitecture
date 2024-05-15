@@ -1,5 +1,5 @@
 ﻿using Application.CQRS.Commands;
-using Application.CQRS.Handlers.ParkingLot;
+using Application.CQRS.Handlers.ParkingLotHandler;
 using Application.CQRS.Handlers.User;
 using Application.CQRS.Handlers.Vehicle;
 using Application.CQRS.Queries;
@@ -30,12 +30,6 @@ namespace Github.NetCoreWebApp.Core.Application
             services.AddSingleton(mapper);
 
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped(typeof(IUserService),
-                typeof(UserService));
-            services.AddScoped(typeof(IVehicleService),
-                typeof(VehicleService));
-            services.AddScoped(typeof(IParkingLotService),
-                typeof(ParkingLotService));
             services.AddScoped<ILogService, LogService>();
 
             services.AddTransient<IRequestHandler<LoginQueryRequest, LoginResponseDto>, LoginQueryRequestHandler>();
